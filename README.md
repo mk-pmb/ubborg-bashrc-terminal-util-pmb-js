@@ -20,6 +20,7 @@ This module exports one function:
 
 ### bashrc(opts)
 
+Returns an array of file specs.
 `opts` is an optional options object that supports these optional keys:
 
 * `examples`: If a non-empty string, basename of the examples rcd symlink.
