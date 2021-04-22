@@ -7,7 +7,7 @@ function bashrc(opt) {
 
   function eva(modeArg, dotName) {
     const c = ('eval "$(' + (opt.libdir || '"$HOME"/lib')
-      + tup + 'pluggable-bashrc-sourcer.sh ' + modeArg + ')"');
+      + tup + 'pluggable-bashrc-sourcer.sh ' + modeArg + ')"\n');
     return { path: '~/.' + dotName, mimeType: 'text/plain', content: c };
   }
 
