@@ -18,7 +18,7 @@ function bashrc(opt) {
 
   if (opt.examples) {
     files.push('~/.config/bash/' + opt.examples + '.rcd =-> '
-      + (opt.libdir || '../../lib') + tup + 'doc/examples/bashrc_parts');
+      + (opt.libdir || '../../lib') + tup + 'doc/examples/bashrc_parts/');
   }
 
   return files;
