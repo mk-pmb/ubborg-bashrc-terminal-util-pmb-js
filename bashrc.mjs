@@ -2,6 +2,29 @@
 
 const tup = '/terminal-util-pmb/';
 
+
+function joinTpl(...a) { return a.join.bind(a); }
+
+
+function setupExamples(opt) {
+  let exSpec = opt.examples;
+  if (!exSpec) { return []; }
+  if (exSpec.substr) { exSpec = ['', exSpec]; }
+  const [exSubPrefix, exBaseLinkNoFext, ...extras] = exSpec;
+  const bashDir = '~/.config/bash/';
+  const fext = '.rcd';
+  const baseLinkName = exSubPrefix + exBaseLinkNoFext + fext;
+  const baseLinkSpec = (bashDir + baseLinkName + ' =-> '
+    + (opt.libdir || '../../lib') + tup + 'doc/examples/bashrc_parts/');
+  const baseLinkSubSym = ' =-> §=> ' + baseLinkName + '/';
+  const specs = [
+    baseLinkSpec,
+    ...extras.map(joinTpl(bashDir + exSubPrefix, fext + baseLinkSubSym, '/')),
+  ];
+  return specs;
+}
+
+
 function bashrc(opt) {
   if (!opt) { return bashrc(true); }
 
@@ -14,14 +37,10 @@ function bashrc(opt) {
   const files = [
     eva('p', 'profile'),
     eva('r', 'bashrc'),
+    ...setupExamples(opt),
   ];
-
-  if (opt.examples) {
-    files.push('~/.config/bash/' + opt.examples + '.rcd =-> '
-      + (opt.libdir || '../../lib') + tup + 'doc/examples/bashrc_parts/');
-  }
-
   return files;
 }
+
 
 export default bashrc;

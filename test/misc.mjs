@@ -42,8 +42,7 @@ cmpTest('example symlink', { examples: 'tu' }, [
 ], 0);
 
 const hbl = '/home/bernd/lib';
-
-cmpTest('example symlink', { examples: 'tu', libdir: hbl }, [
+const exBernd = [
   { path: '~/.profile',
     mimeType,
     content: 'eval "$(' + hbl + '/' + tups + ' p)"\n',
@@ -52,5 +51,33 @@ cmpTest('example symlink', { examples: 'tu', libdir: hbl }, [
     mimeType: 'text/plain',
     content: 'eval "$(' + hbl + '/' + tups + ' r)"\n',
   },
-  '~/.config/bash/tu.rcd =-> ' + hbl + '/' + tude,
+  '~/.config/bash/tu.core.rcd =-> ' + hbl + '/' + tude,
+];
+
+cmpTest('example symlink', {
+  libdir: hbl,
+  examples: 'tu.core',
+}, exBernd, 0);
+
+cmpTest('example symlink', {
+  libdir: hbl,
+  examples: ['tu.', 'core', 'extra'],
+}, [
+  ...exBernd,
+  '~/.config/bash/tu.extra.rcd =-> §=> tu.core.rcd/extra/',
 ], 0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* scroll */

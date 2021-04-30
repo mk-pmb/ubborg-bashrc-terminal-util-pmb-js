@@ -1,5 +1,5 @@
 { "name": "ubborg-bashrc-terminal-util-pmb",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Declare bash config files for use with terminal-util-pmb's pluggable-bashrc-sourcer.",
   "keywords": [],
 
